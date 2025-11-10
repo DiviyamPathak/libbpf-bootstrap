@@ -5,6 +5,12 @@
 
 char LICENSE[] SEC("license") = "Dual BSD/GPL";
 
+struct trace_event_raw_sys_enter {
+    unsigned long long unused;
+    long id;
+    unsigned long args[6];
+};
+
 SEC("tracepoint/syscalls/sys_enter_openat")
 int handle_sys_enter_openat(struct trace_event_raw_sys_enter *ctx)
 {
